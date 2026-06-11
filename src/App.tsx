@@ -1,14 +1,21 @@
-// import { useState } from 'react'
-import QrUploader from "./components/QrUploader"
 import './App.css'
+import { useState } from 'react'
+import ImagePreview from "./components/ImageViewer"
+import QrUploader from "./components/QrUploader"
+import QrDecoder from './components/QrDecoder'
 
 function App() {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
   return (
     <>
       <section id="center">
         <div>
           <h1>QR Code Scanner</h1>
-          <QrUploader />
+          <QrUploader setImageUrl={setImageUrl} />
+          <ImagePreview imageUrl={imageUrl} />
+
+          <QrDecoder imageUrl={imageUrl} />
         </div>
       </section>
     </>

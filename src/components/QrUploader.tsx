@@ -1,20 +1,30 @@
 import "../App.css"
 import { useState } from "react";
 
-const QrUploader = () => {
+type Props = {
+  setImageUrl: (url: string | null) => void;
+};
+
+const QrUploader = ({setImageUrl}: Props) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   function handleFileSelection(event: React.ChangeEvent<HTMLInputElement>) {
     const chosenFile = event.target.files?.[0];
-    if (chosenFile==undefined || chosenFile==null){
+    if (!chosenFile) {
       setSelectedFile(null);
-    } else {
-      setSelectedFile(chosenFile);
+      setImageUrl(null);
+      return;
     }
+
+    setSelectedFile(chosenFile);
+
+    const url = URL.createObjectURL(chosenFile);
+    setImageUrl(url);
   }
 
   function clearSelectedFile(){
     setSelectedFile(null);
+    setImageUrl(null);
   }
   return(
     <div className="file-upload">

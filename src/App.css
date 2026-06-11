@@ -27,6 +27,18 @@
   gap: 50px;
 }
 
+.preview-image {
+  display: block;
+  width: 600px;
+  height: 400px;
+  overflow: auto;
+}
+
+.preview-img-wrapper{
+  display: flex;
+  justify-content: center;
+}
+
 input[type="file"] {
   display: none;
 }
